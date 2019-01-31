@@ -34,18 +34,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $checkDetail = $this->detailRepository->findbyuser(Auth::user()->id);
+        $userDetail = $this->detailRepository->findbyuser(Auth::user()->id);
 
-        if (!$checkDetail) {
-            $type = $this->typeRepository->getSelect();
-            $unit = $this->unitRepository->getSelect();
+        if (!$userDetail) {
+            Session::put('ss_status_biodata', false);
 
             $data = [
-                'type' => $type,
-                'unit' => $unit,
+                'userDetail' => $userDetail,
             ];
 
+            return view('biodata', $data);
+        }
+
+        if (!$userDetail->phone) {
             Session::put('ss_status_biodata', false);
+
+            $data = [
+                'userDetail' => $userDetail,
+            ];
 
             return view('biodata', $data);
         }

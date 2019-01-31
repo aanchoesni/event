@@ -67,6 +67,7 @@ class UsersRepository
         $data = $request->except('_token');
         $data['id'] = (string)Str::uuid();
         $data['password'] = bcrypt($request->input('password'));
+        $data['login_type'] = 'app';
         $data['userid_created'] = Auth::user()->id;
         $data['userid_updated'] = Auth::user()->id;
 

@@ -33,6 +33,7 @@ class BiodataRepository
         }
         $data['fakultas'] = $isdm[0]->namahomebase;
         $data['prodi'] = $isdm[0]->namasatker;
+        $data['login_type'] = 'sso';
 
         return $data;
     }
@@ -51,6 +52,7 @@ class BiodataRepository
         $data['role'] = 'mahasiswa';
         $data['fakultas'] = $user['nama_fakultas'];
         $data['prodi'] = $user['nama_prodi'];
+        $data['login_type'] = 'sso';
 
         return $data;
     }

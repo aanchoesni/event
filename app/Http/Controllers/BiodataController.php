@@ -26,12 +26,6 @@ class BiodataController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $validator = Validator::make($data, Userdetail::$rules, Userdetail::$errormessage);
-
-        if ($validator->fails()) {
-            $errormessage = $validator->messages();
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
         $checkbiodata = Userdetail::where('noidentitas', $request->input('noidentitas'))->first();
 
@@ -64,6 +58,6 @@ class BiodataController extends Controller
     {
         $data = $this->detailRepository->update($request, Auth::user()->role);
 
-        return redirect()->route('biodata.show');
+        return redirect()->route('home');
     }
 }

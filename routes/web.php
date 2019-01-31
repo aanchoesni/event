@@ -22,6 +22,10 @@ Route::get('eventdetail/{id}', 'FrontController@eventdetail')->name('eventdetail
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -32,8 +36,8 @@ Route::group(['namespace' => 'Authentication'], function () {
     Route::get('login', 'LoginController@index')->name('login');
     Route::get('sso/{email}/{sessionid}', 'LoginController@sso');
 
-    Route::get('register', 'RegisterController@index')->name('register.index');
-    Route::post('register', 'RegisterController@create')->name('register');
+    // Route::get('register', 'RegisterController@index')->name('register.index');
+    // Route::post('register', 'RegisterController@create')->name('register');
 });
 
 Route::group(['middleware' => 'auth'], function () {

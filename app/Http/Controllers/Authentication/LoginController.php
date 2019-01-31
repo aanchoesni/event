@@ -105,7 +105,7 @@ class LoginController extends Controller
             return $this->getadduser($auth);
         }
 
-        return redirect()->route('homemahasiswa');
+        return redirect()->route('/');
     }
 
     private function getlogin($userid)

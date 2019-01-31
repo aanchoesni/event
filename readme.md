@@ -8,3 +8,5 @@
 ## Update Feature 31 Januari 2019
 - Event version 1.0
 - Login and register with SSO
+- Update biodata phone
+- Update for user SSO and user general
