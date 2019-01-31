@@ -22,6 +22,7 @@ define('LARAVEL_START', microtime(true));
 */
 
 require __DIR__.'/../vendor/autoload.php';
+include __DIR__ . '/../app/Http/Controllers/curl_function.php';
 
 /*
 |--------------------------------------------------------------------------

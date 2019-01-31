@@ -23,16 +23,6 @@ class Userdetail extends Model
     ];
 
     protected $fillable = [
-        'id', 'user_id', 'unit_id', 'type_id', 'phone', 'origin', 'userid_created', 'userid_updated', 'noidentitas'
+        'id', 'user_id', 'fakultas', 'prodi', 'phone', 'origin', 'userid_created', 'userid_updated', 'noidentitas', 'type',
     ];
-
-    public function rUnit()
-    {
-        return $this->belongsTo(Unit::class, 'unit_id', 'id');
-    }
-
-    public function rType()
-    {
-        return $this->belongsTo(Type::class, 'type_id', 'id');
-    }
 }

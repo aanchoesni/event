@@ -21,7 +21,7 @@ class UsersRepository
             ->pluck('name', 'id');
     }
 
-    public function find($id = null, $with = null)
+    public function find($id = null, $with = null, $email = null)
     {
         return $this->model
             ->when($with, function ($query) use ($with) {
@@ -30,7 +30,10 @@ class UsersRepository
             ->when($id, function ($query) use ($id) {
                 return $query->where('id', $id);
             })
-            ->firstOrFail();
+            ->when($email, function ($query) use ($email) {
+                return $query->where('email', $email);
+            })
+            ->first();
     }
 
     public function get($with = null, $name = null)
@@ -68,7 +71,13 @@ class UsersRepository
         $data['userid_updated'] = Auth::user()->id;
 
         return $this->model->create($data);
+    }
 
+    public function storeSso($id, $data)
+    {
+        $data['id'] = $id;
+        $data['password'] = bcrypt($data['noid'].'s3cr3t5');
+        return $this->model->create($data);
     }
 
     public function update($request, User $user)

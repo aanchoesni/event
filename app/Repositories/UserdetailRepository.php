@@ -49,6 +49,17 @@ class UserdetailRepository
         return $biodata;
     }
 
+    public function storeSso($id, $data)
+    {
+        $data['id'] = (string)Str::uuid();
+        $data['noidentitas'] = $data['noid'];
+        $data['type'] = $data['role'];
+        $data['user_id'] = $id;
+        $data['origin'] = 'Universitas Negeri Surabaya';
+
+        return $this->model->create($data);
+    }
+
     public function show($id)
     {
         return $this->model->where('user_id', $id)->first();
