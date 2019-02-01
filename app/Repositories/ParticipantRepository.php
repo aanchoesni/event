@@ -35,7 +35,13 @@ class ParticipantRepository
             return 'terdaftar';
         }
 
-        $event = $this->repoEvent->find($id);
+        $event = $this->repoEvent->find($id, ['rType']);
+
+        foreach ($event->rType as $key => $val) {
+            if ($val->name != $user->role) {
+                return 'tidak sesuai';
+            }
+        }
 
         if ($event->pay_status == false) {
             $data['is_valid'] = 1;

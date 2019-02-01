@@ -47,10 +47,12 @@
                     @if ($participant)
                         <a class="btn btn-success" disabled>Regestered</a>
                     @else
-                    <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Register</button>
-                    </form>
+                        @if ($event->end_reg > Date('Y-m-d'))
+                        <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Register</button>
+                        </form>
+                        @endif
                     @endif
                 @endguest
             </div>
