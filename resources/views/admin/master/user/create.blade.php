@@ -44,7 +44,7 @@
                 <div class="form-group">
                     {{ Form::label('role', 'Role', array('class' => 'control-label col-lg-2')) }}
                     <div class="col-lg-10">
-                    {{ Form::select('role', ['admin'=>'Admin', 'adminevent'=>'Admin Event', 'peserta'=>'Peserta'], null, array('class' => 'form-control tkh','placeholder'=>'- Pilih -', 'required')) }}
+                    {{ Form::select('role', ['admin'=>'Admin', 'dosen'=>'Dosen', 'tendik'=>'Tendik', 'umum'=>'umum'], null, array('class' => 'form-control tkh','placeholder'=>'- Pilih -', 'required')) }}
                     </div>
                 </div>
                 <div class="box-footer">

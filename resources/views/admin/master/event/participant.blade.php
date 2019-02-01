@@ -1,4 +1,9 @@
-@extends('layouts.masteradmin')
+@if (Auth::user()->role == 'admin')
+<?php $layout = 'layouts.masteradmin'; ?>
+@else
+<?php $layout = 'layouts.masteruser'; ?>
+@endif
+@extends($layout)
 
 @section('title')
   Peserta

@@ -12,7 +12,7 @@ class FrontController extends Controller
     public function __construct(
         EventsRepository $repoEvent,
         CategoryRepository $repoCategories
-    ){
+    ) {
         $this->repoEvent = $repoEvent;
         $this->repoCategories = $repoCategories;
     }

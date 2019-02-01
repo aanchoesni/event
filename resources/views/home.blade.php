@@ -1,4 +1,4 @@
-@if (Auth::user()->role == 'admin' || Auth::user()->role == 'adminevent')
+@if (Auth::user()->role == 'admin')
 <?php $layout = 'layouts.masteradmin'; ?>
 @else
 <?php $layout = 'layouts.masteruser'; ?>

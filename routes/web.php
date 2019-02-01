@@ -56,13 +56,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/users', 'UserController');
     });
 
-    Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => 'role:admin_adminevent'], function () {
+    Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => 'role:admin_dosen_tendik_mahasiswa'], function () {
         Route::resource('/events', 'EventsController');
         Route::get('participant/{id}', 'ParticipantController@index')->name('participant.index');
         Route::delete('participant/{id}', 'ParticipantController@destroy')->name('participant.destroy');
+
+        Route::post('selecttype', 'SelectTypeController@store')->name('selectype.store');
+        Route::post('selecttypeDel', 'SelectTypeController@destroy')->name('selectype.delete');
     });
 
-    Route::group(['middleware' => 'role:peserta'], function () {
+    Route::group(['middleware' => 'role:admin_dosen_tendik_mahasiswa'], function () {
         Route::post('/regevent', 'ParticipantController@register')->name('regevent');
         Route::get('/history', 'ParticipantController@history')->name('history');
     });

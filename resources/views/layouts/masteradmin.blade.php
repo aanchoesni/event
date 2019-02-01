@@ -67,7 +67,7 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                  @if (Auth::user()->role == 'adminevent' || Auth::user()->role == 'admin')
+                  @if (Auth::user()->role == 'admin')
                   @include('layouts.menu.admin')
                   @else
                   @include('layouts.menu.participant')

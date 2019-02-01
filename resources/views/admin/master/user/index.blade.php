@@ -47,13 +47,7 @@
                               <div>{!! $value->email !!}</div>
                           </td>
                           <td>
-                              @if ($value->role == 'admin')
-                              Admin
-                              @elseif ($value->role == 'adminevent')
-                              Admin Event
-                              @else
-                              Peserta
-                              @endif
+                              {{ ucfirst($value->role) }}
                           </td>
                           <td style="text-align:center;">
                             <a href="{{ route('users.edit', $value->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>

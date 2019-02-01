@@ -1,4 +1,9 @@
-@extends('layouts.masteradmin')
+@if (Auth::user()->role == 'admin')
+<?php $layout = 'layouts.masteradmin'; ?>
+@else
+<?php $layout = 'layouts.masteruser'; ?>
+@endif
+@extends($layout)
 
 @section('title')
   Tambah Event
@@ -77,12 +82,14 @@
                     {{ Form::text('quota', null, array('class' => 'form-control tkh','placeholder'=>'Kuota', 'onKeyPress' => 'return event.charCode >= 48 && event.charCode <= 57')) }}
                     </div>
                 </div>
+                @if (Auth::user()->role == 'admin')
                 <div class="form-group">
                     {{ Form::label('publication_status', 'Status Publikasi', array('class' => 'control-label col-lg-2')) }}
                     <div class="col-lg-10">
                         {{ Form::checkbox('publication_status', null, null, ['class'=>'checkbox form-control', 'style'=>'width: 20px;']) }}
                     </div>
                 </div>
+                @endif
                 <div class="form-group">
                     {{ Form::label('start_reg', 'Awal Pendaftaran', array('class' => 'control-label col-lg-2')) }}
                     <div class="col-lg-10">
@@ -101,7 +108,7 @@
                         {{ Form::checkbox('pay_status', null, null, ['class'=>'checkbox form-control', 'style'=>'width: 20px;', 'id'=>'statuspay']) }}
                     </div>
                 </div>
-                <div id="fmpay">
+                <div id="fmpay" style="display: none;">
                     <div class="form-group">
                         {{ Form::label('start_pay', 'Awal Pambayaran', array('class' => 'control-label col-lg-2')) }}
                         <div class="col-lg-10">

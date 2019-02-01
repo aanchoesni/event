@@ -63,4 +63,9 @@ class Event extends Model
     {
         return $this->hasMany(Participant::class, 'id', 'event_id');
     }
+
+    public function rType()
+    {
+        return $this->belongsToMany(Type::class, 'event_type', 'event_id', 'type_id');
+    }
 }

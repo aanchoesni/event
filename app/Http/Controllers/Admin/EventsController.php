@@ -10,6 +10,7 @@ use Auth;
 use Crypt;
 use App\Repositories\CategoryRepository;
 use App\Repositories\UnitRepository;
+use App\Repositories\TypeRepository;
 
 class EventsController extends Controller
 {
@@ -17,11 +18,13 @@ class EventsController extends Controller
     public function __construct(
         EventsRepository $repository,
         CategoryRepository $categoryRepository,
-        UnitRepository $unitRepository
-        ) {
+        UnitRepository $unitRepository,
+        TypeRepository $typeRepo
+    ) {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->unitRepository = $unitRepository;
+        $this->typeRepo = $typeRepo;
     }
 
     /**
@@ -32,13 +35,16 @@ class EventsController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()->role == 'admin') {
-            $event = $this->repository->get(null, $request->input('title'));
-        } else if (Auth::user()->role == 'adminevent') {
-            $event = $this->repository->get(null, $request->input('title'), Auth::user()->id);
+            $event = $this->repository->get(['rCategory', 'rUnit', 'rType'], $request->input('title'));
+        } else {
+            $event = $this->repository->get(['rCategory', 'rUnit', 'rType'], $request->input('title'), Auth::user()->id);
         }
+
+        $type = $this->typeRepo->getSelect();
 
         $data = [
             'events' => $event,
+            'type' => $type,
         ];
 
         return view('admin.master.event.index', $data);

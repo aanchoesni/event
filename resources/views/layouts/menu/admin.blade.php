@@ -21,7 +21,7 @@
         </li>
         <li><a href="{{ URL::to('admin/users') }}"><i class="fa fa-users"></i><span>User</span></a></li>
     @endif
-    @if (Auth::user()->role == 'adminevent')
+    @if (Auth::user()->role != 'admin' && Auth::user()->role != 'umum')
         <li><a href="{{ url('admin/events') }}"><i class="fa fa-bicycle"></i>Master Event</i></a></li>
     @endif
 @endif

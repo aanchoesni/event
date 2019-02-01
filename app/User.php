@@ -33,6 +33,6 @@ class User extends Authenticatable
 
     public function rDetail()
     {
-        return $this->belongsTo(Userdetail::class, 'id', 'user_id')->with(['rUnit', 'rType']);
+        return $this->belongsTo(Userdetail::class, 'id', 'user_id');
     }
 }

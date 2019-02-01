@@ -1,4 +1,9 @@
-@extends('layouts.masteradmin')
+@if (Auth::user()->role == 'admin')
+<?php $layout = 'layouts.masteradmin'; ?>
+@else
+<?php $layout = 'layouts.masteruser'; ?>
+@endif
+@extends($layout)
 
 @section('title')
     Lengkapi Biodata
@@ -22,9 +27,10 @@
                 Lengkapi Data {!! ucfirst(Auth::user()->role) !!}
             </header>
             <div class="panel-body">
+                @if(Auth::user()->login_type != 'sso')
                 <div class="form-group">
                     <label for="notlp">Nomor Identitas</label>
-                <input type="text" class="form-control tkh" name="noidentitas" id="noidentitas" placeholder="Nomor Identitas" value="{{ $biodata->noidentitas }}" required>
+                <input type="text" class="form-control tkh" name="noidentitas" id="noidentitas" placeholder="Nomor Identitas" @if ($biodata->noidentitas) value="{{ $biodata->noidentitas }}" @else value="{{ old('noidentitas') }}" @endif required>
                 </div>
                 <div class="form-group">
                     <label for="kodepos">Nama</label>
@@ -32,22 +38,65 @@
                 </div>
                 <div class="form-group">
                     <label for="type_id">Tipe Peserta</label>
-                    {{ Form::select('type_id', $type, $biodata->type_id, ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'type']) }}
+                    @if ($biodata->type)
+                    {{ Form::select('type', ['dosen'=>'Dosen', 'tendik'=>'Tendik', 'mahasiswa'=>'Mahasiswa', 'umum'=>'Umum'], $biodata->type, ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'type']) }}
+                    @else
+                    {{ Form::select('type', ['dosen'=>'Dosen', 'tendik'=>'Tendik', 'mahasiswa'=>'Mahasiswa', 'umum'=>'Umum'], old('type'), ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'type']) }}
+                    @endif
                 </div>
-                {{-- @if ($biodata->type_id != 'd73ecaaa-b3d2-4c96-b37e-868c6a8ff7e5') --}}
-                <div class="form-group" id="fmunit">
-                    <label for="unit_id">Unit</label>
-                    {{ Form::select('unit_id', $unit, $biodata->unit_id, ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'unit']) }}
+                <div class="form-group">
+                    <label for="fakultas">Fakultas/Unit</label>
+                    <input type="text" class="form-control tkh" name="fakultas" id="fakultas" placeholder="Fakultas/Unit" @if ($biodata->fakultas) value="{{ $biodata->fakultas }}" @else value="{{ old('fakultas') }}" @endif required>
                 </div>
-                {{-- @endif --}}
                 <div class="form-group">
                     <label for="origin">Asal</label>
-                    <input type="text" class="form-control tkh" name="origin" id="origin" placeholder="Asal" value="{{ $biodata->origin }}" required>
+                    <input type="text" class="form-control tkh" name="origin" id="origin" placeholder="Asal" @if ($biodata->origin) value="{{ $biodata->origin }}" @else value="{{ old('origin') }}" @endif required>
                 </div>
+                @else
+                <div class="form-group">
+                    <label for="kodepos">Nomor Identitas</label>
+                    <input type="text" class="form-control tkh" name="name" id="noidentitasx" placeholder="Nomor Identitas" value="{{ $biodata->noidentitas }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="kodepos">Nama</label>
+                    <input type="text" class="form-control tkh" name="name" id="namex" placeholder="Nama" value="{{ Auth::user()->name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="kodepos">Tipe Peserta</label>
+                    <input type="text" class="form-control tkh" name="name" id="typex" placeholder="Tipe Peserta" value="{{ ucfirst($biodata->type) }}" readonly>
+                </div>
+                <div class="form-group">
+                    @if (Auth::user()->role == 'mahasiswa')
+                    <label for="fakultas">Fakultas</label>
+                    @else
+                    <label for="fakultas">Homebase</label>
+                    @endif
+                    <input type="text" class="form-control tkh" name="name" id="fakultasx" placeholder="Fakultas" value="{{ $biodata->fakultas }}" readonly>
+                </div>
+                <div class="form-group">
+                    @if (Auth::user()->role == 'mahasiswa')
+                    <label for="prodi">Prodi</label>
+                    @else
+                    <label for="prodi">Satker</label>
+                    @endif
+                    <input type="text" class="form-control tkh" name="name" id="prodix" placeholder="Prodi" value="{{ $biodata->prodi }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="kodepos">Asal</label>
+                    <input type="text" class="form-control tkh" name="name" id="originx" placeholder="Asal" value="{{ $biodata->origin }}" readonly>
+                </div>
+                @endif
+                @if ($biodata->phone)
                 <div class="form-group">
                     <label for="phone">Nomor HP</label>
                     <input type="text" class="form-control tkh" name="phone" id="phone" placeholder="Nomor HP" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{ $biodata->phone }}" required>
                 </div>
+                @else
+                <div class="form-group">
+                    <label for="phone">Nomor HP</label>
+                    <input type="text" class="form-control tkh" name="phone" id="phone" placeholder="Nomor HP" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{ old('phone') }}" required>
+                </div>
+                @endif
 
                 <div class="pull-right">
                     <button type="submit" class="btn btn-info">Submit</button>
