@@ -34,7 +34,7 @@
                 @if(Auth::user()->login_type != 'sso')
                 <div class="form-group">
                     <label for="notlp">Nomor Identitas</label>
-                <input type="text" class="form-control tkh" name="noidentitas" id="noidentitas" placeholder="Nomor Identitas" @if ($userDetail->noidentitas) value="{{ $userDetail->noidentitas }}" @else value="{{ old('noidentitas') }}" @endif required>
+                    <input type="text" class="form-control tkh" name="noidentitas" id="noidentitas" placeholder="Nomor Identitas" value="{{ old('noidentitas') }}" required>
                 </div>
                 <div class="form-group">
                     <label for="kodepos">Nama</label>
@@ -42,19 +42,15 @@
                 </div>
                 <div class="form-group">
                     <label for="type_id">Tipe Peserta</label>
-                    @if ($userDetail->type)
-                    {{ Form::select('type', ['dosen'=>'Dosen', 'tendik'=>'Tendik', 'mahasiswa'=>'Mahasiswa', 'umum'=>'Umum'], $userDetail->type, ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'type']) }}
-                    @else
                     {{ Form::select('type', ['dosen'=>'Dosen', 'tendik'=>'Tendik', 'mahasiswa'=>'Mahasiswa', 'umum'=>'Umum'], old('type'), ['class' => 'form-control tkh select2','placeholder'=>'- Pilih -', 'required', 'id' => 'type']) }}
-                    @endif
                 </div>
                 <div class="form-group">
                     <label for="fakultas">Fakultas/Unit</label>
-                    <input type="text" class="form-control tkh" name="fakultas" id="fakultas" placeholder="Fakultas/Unit" @if ($userDetail->fakultas) value="{{ $userDetail->fakultas }}" @else value="{{ old('fakultas') }}" @endif required>
+                    <input type="text" class="form-control tkh" name="fakultas" id="fakultas" placeholder="Fakultas/Unit" value="{{ old('fakultas') }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="origin">Asal</label>
-                    <input type="text" class="form-control tkh" name="origin" id="origin" placeholder="Asal" @if ($userDetail->origin) value="{{ $userDetail->origin }}" @else value="{{ old('origin') }}" @endif required>
+                    <label for="origin">Asal Instansi</label>
+                    <input type="text" class="form-control tkh" name="origin" id="origin" placeholder="Asal" value="{{ old('origin') }}" required>
                 </div>
                 @else
                 <div class="form-group">
@@ -86,21 +82,14 @@
                     <input type="text" class="form-control tkh" name="name" id="prodix" placeholder="Prodi" value="{{ $userDetail->prodi }}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="kodepos">Asal</label>
+                    <label for="kodepos">Asal Instansi</label>
                     <input type="text" class="form-control tkh" name="name" id="originx" placeholder="Asal" value="{{ $userDetail->origin }}" readonly>
                 </div>
                 @endif
-                @if ($userDetail->phone)
-                <div class="form-group">
-                    <label for="phone">Nomor HP</label>
-                    <input type="text" class="form-control tkh" name="phone" id="phone" placeholder="Nomor HP" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{ $userDetail->phone }}" required>
-                </div>
-                @else
                 <div class="form-group">
                     <label for="phone">Nomor HP</label>
                     <input type="text" class="form-control tkh" name="phone" id="phone" placeholder="Nomor HP" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{ old('phone') }}" required>
                 </div>
-                @endif
 
                 <div class="pull-right">
                     <button type="submit" class="btn btn-info">Submit</button>

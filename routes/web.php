@@ -42,6 +42,8 @@ Route::group(['namespace' => 'Authentication'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/regevent', 'ParticipantController@register')->name('regevent');
+    Route::get('/history', 'ParticipantController@history')->name('history');
 
     Route::group(['prefix' => '/biodata', 'as' => 'biodata.'], function () {
         Route::get('/show', 'BiodataController@show')->name('show');
@@ -63,10 +65,5 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('selecttype', 'SelectTypeController@store')->name('selectype.store');
         Route::post('selecttypeDel', 'SelectTypeController@destroy')->name('selectype.delete');
-    });
-
-    Route::group(['middleware' => 'role:admin_dosen_tendik_mahasiswa'], function () {
-        Route::post('/regevent', 'ParticipantController@register')->name('regevent');
-        Route::get('/history', 'ParticipantController@history')->name('history');
     });
 });

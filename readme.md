@@ -8,6 +8,8 @@
 ## Update Feature 1 Februari 2019
 - Add many type participant
 - User SSO can manage their own event
+- User umum can't manage event
+- Participant can register one time in one event
 
 ## Update Feature 31 Januari 2019
 - Event version 1.0

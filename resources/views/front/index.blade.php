@@ -19,8 +19,9 @@
                     By <a href="#">{!! $value->rUnit->shortname !!}</a>
                 </div>
                 <ul class="list-unstyled">
-                    <li><a href="#"><em>Dosen</em></a></li>
-                    <li><a href="#"><em>Mahasiswa</em></a></li>
+                    @foreach ($value->rType as $val)
+                    <li><a href="#"><em>{{$val->name}}</em></a></li>
+                    @endforeach
                 </ul>
                 <div class="shate-view">
                     <ul class="list-unstyled">
@@ -28,10 +29,10 @@
                             @if ($value->quota == 0 || $value->quota == null)
                             Unlimited
                             @else
-                            {!! $value->quota !!} Kuota
+                            {!! $value->quota !!} Quota
                             @endif
                         </li>
-                        <li><a href="javascript:;">23 Peserta</a></li>
+                        <li>{{ $value->rEventParticipant->count() }} Registered</li>
                     </ul>
                 </div>
             </div>

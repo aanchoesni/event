@@ -46,6 +46,9 @@
                         <li><a href="{!! url('login') !!}">Login</a></li>
                         <li><a href="{!! url('register') !!}">Register</a></li>
                         @else
+                        @if (Auth::user()->role != 'umum')
+                        <li><a href="{!! url('admin/events') !!}">Manage Event</a></li>
+                        @endif
                         <li><a href="{!! url('history') !!}">History</a></li>
                         <li>
                             <a href="{{ route('logout') }}"

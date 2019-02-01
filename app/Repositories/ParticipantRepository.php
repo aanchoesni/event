@@ -70,7 +70,7 @@ class ParticipantRepository
                 return $query->with($with);
             })
             ->when($user_id, function ($query) use ($user_id) {
-                return $query->where('userid', $user_id);
+                return $query->where('user_id', $user_id);
             })
             ->orderBy('created_at', 'DESC')
             ->get();

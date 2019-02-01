@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ParticipantRepository;
 use Alert;
+use Auth;
 
 class ParticipantController extends Controller
 {
@@ -33,7 +34,7 @@ class ParticipantController extends Controller
 
     public function history()
     {
-        $histories = $this->repoParticipant->history();
+        $histories = $this->repoParticipant->history(null, Auth::user()->id);
 
         $data = [
             'histories' => $histories,

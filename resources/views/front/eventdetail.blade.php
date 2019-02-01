@@ -18,8 +18,9 @@
                     By <a href="#">{!! $event->rUnit->shortname !!}</a>
                 </div>
                 <ul class="list-unstyled">
-                    <li><a href="javascript:;"><em>Dosen</em></a></li>
-                    <li><a href="javascript:;"><em>Mahasiswa</em></a></li>
+                    @foreach ($event->rType as $val)
+                    <li><a href="#"><em>{{$val->name}}</em></a></li>
+                    @endforeach
                 </ul>
                 <div class="shate-view">
                     <ul class="list-unstyled">
@@ -27,10 +28,10 @@
                             @if ($event->quota == 0 || $event->quota == null)
                             Unlimited
                             @else
-                            {!! $event->quota !!} Kuota
+                            {!! $event->quota !!} Quota
                             @endif
                         </li>
-                        <li><a href="javascript:;">23 Peserta</a></li>
+                        <li>{{ $event->rEventParticipant->count() }} Registered</li>
                     </ul>
                 </div>
             </div>
@@ -43,8 +44,8 @@
                 <p>{!! $event->description !!}</p>
                 @guest
                 @else
-                    @if ($event->rParticipant)
-                        <a class="btn btn-success" disabled>Anda Sudah Terdaftar</a>
+                    @if ($participant)
+                        <a class="btn btn-success" disabled>Regestered</a>
                     @else
                     <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
                         @csrf

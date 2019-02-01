@@ -21,7 +21,7 @@ class InseoHelper
     public static function blnpost($date)
     {
         $bln = substr($date, 5, 2);
-        $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember');
+        $bulan = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 
         return $bulan[(int)$bln - 1];
 
@@ -33,7 +33,7 @@ class InseoHelper
         $tgl = substr($waktu, 8, 2);
         $bln = substr($waktu, 5, 2);
         $thn = substr($waktu, 0, 4);
-        $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember');
+        $bulan = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
         $idxhari = date('N', strtotime($waktu));
 
         switch ($tipe) {

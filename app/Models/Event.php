@@ -61,7 +61,7 @@ class Event extends Model
 
     public function rEventParticipant()
     {
-        return $this->hasMany(Participant::class, 'id', 'event_id');
+        return $this->hasMany(Participant::class, 'event_id', 'id');
     }
 
     public function rType()

@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 use App\Repositories\EventsRepository;
 use App\Repositories\CategoryRepository;
 use Auth;
+use App\Repositories\ParticipantRepository;
 
 class FrontController extends Controller
 {
     public function __construct(
         EventsRepository $repoEvent,
-        CategoryRepository $repoCategories
+        CategoryRepository $repoCategories,
+        ParticipantRepository $repoParticipant
     ) {
         $this->repoEvent = $repoEvent;
         $this->repoCategories = $repoCategories;
+        $this->repoParticipant = $repoParticipant;
     }
     public function index(Request $request)
     {
@@ -22,7 +25,7 @@ class FrontController extends Controller
             return redirect('home');
         }
 
-        $events = $this->repoEvent->paginate();
+        $events = $this->repoEvent->paginate(['rCategory', 'rUnit', 'rType', 'rEventParticipant']);
         $categories = $this->repoCategories->get();
 
         $data = [
@@ -35,12 +38,14 @@ class FrontController extends Controller
 
     public function eventdetail($id)
     {
-        $event = $this->repoEvent->find($id, ['rParticipant']);
+        $event = $this->repoEvent->find($id, ['rCategory', 'rUnit', 'rType', 'rEventParticipant', 'rParticipant']);
         $categories = $this->repoCategories->get();
+        $participant = $this->repoParticipant->check($id, Auth::user()->id);
 
         $data = [
             'event' => $event,
-            'categories' => $categories
+            'categories' => $categories,
+            'participant' => $participant
         ];
 
         return view('front.eventdetail', $data);
