@@ -46,7 +46,7 @@ class LoginController extends Controller
             $useridsso = $rr->userid;
         }
 
-        $user = $this->userRepo->find(null, null, $auth[0]->email);
+        $user = $this->userRepo->find(null, null, $emailsso);
 
         if ($user) {
             // Login
