@@ -21,6 +21,7 @@
 - Bug fix redirect page after login sso
 - Bug fix register user sso
 - Bug fix type user not match
+- Bug fix register event
 
 ## Update Feature 1 Februari 2019
 - Add many type participant
