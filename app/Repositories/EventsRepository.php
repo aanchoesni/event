@@ -100,7 +100,7 @@ class EventsRepository
     public function update($request, Event $event)
     {
         $data = $request->except('_token');
-        if (Auth::user()->role != 'admin') {
+        if (Auth::user()->role == 'admin') {
             $data['publication_status'] = $request->has('publication_status') ? true : false;
         }
         $data['pay_status'] = $request->has('pay_status') ? true : false;
