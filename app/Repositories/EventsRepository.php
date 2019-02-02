@@ -74,7 +74,9 @@ class EventsRepository
     public function update($request, Event $event)
     {
         $data = $request->except('_token');
-        $data['publication_status'] = $request->has('publication_status') ? true : false;
+        if ($request->input('publication_status')) {
+            $data['publication_status'] = $request->has('publication_status') ? true : false;
+        }
         $data['pay_status'] = $request->has('pay_status') ? true : false;
         $data['userid_updated'] = Auth::user()->id;
 

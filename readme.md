@@ -6,6 +6,9 @@
 - Integrated with [SIAKADU](https://siakadu.unesa.ac.id).
 
 ## Update Feature 1 Februari 2019
+- Limitation participant on event
+
+## Update Feature 1 Februari 2019
 - Add many type participant
 - User SSO can manage their own event
 - User umum can't manage event

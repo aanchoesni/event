@@ -6,16 +6,26 @@ use Illuminate\Http\Request;
 use App\Repositories\ParticipantRepository;
 use Alert;
 use Auth;
+use App\Repositories\QuotaRepository;
 
 class ParticipantController extends Controller
 {
-    public function __construct(ParticipantRepository $repoParticipant)
-    {
+    public function __construct(
+        ParticipantRepository $repoParticipant,
+        QuotaRepository $quotaRepo
+    ) {
         $this->repoParticipant = $repoParticipant;
+        $this->quotaRepo = $quotaRepo;
     }
 
     public function register(Request $request)
     {
+        $reg = $this->quotaRepo->check($request->input('data'));
+        if ($reg == 'f') {
+            Alert::success('Participant is Full');
+            return redirect()->route('eventdetail', ['data' => $request->input('data')]);
+        }
+
         $participant = $this->repoParticipant->store($request->input('data'));
 
         if ($participant == 'terdaftar') {
@@ -30,11 +40,11 @@ class ParticipantController extends Controller
 
         if ($participant->is_valid == 1) {
             Alert::success('Register Success', 'Success');
-        } else if ($participant->is_valid == 0) {
+        } elseif ($participant->is_valid == 0) {
             Alert::success('Please Confirm Your Payment');
         }
 
-        return redirect()->route('eventdetail',['data'=>$request->input('data')]);
+        return redirect()->route('eventdetail', ['data'=>$request->input('data')]);
     }
 
     public function history()
@@ -46,6 +56,5 @@ class ParticipantController extends Controller
         ];
 
         return view('front.history', $data);
-
     }
 }

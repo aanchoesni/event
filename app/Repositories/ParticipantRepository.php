@@ -12,7 +12,7 @@ class ParticipantRepository
     public function __construct(
         Participant $model,
         EventsRepository $repoEvent
-    ){
+    ) {
         $this->model = $model;
         $this->repoEvent = $repoEvent;
     }
