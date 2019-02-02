@@ -38,11 +38,11 @@
             </div>
             <div class="col-lg-10 col-sm-10">
                 <h1><a href="{!! url('eventdetail/'.$value->id) !!}">{!! $value->title !!}</a></h1>
+                <p>Theme : {!! $value->theme !!}</p>
+                <p>{!! strip_tags(substr(html_entity_decode($value->description,ENT_COMPAT,"UTF-8"),0 , 250)) !!}</p>
                 @if ($value->pamphlet)
-                <img src="img/{!! $value->pamphlet !!}" alt="" style="width: 100%;">
+                <img src="img/{!! $value->pamphlet !!}" alt="" style="width: 100%; height: auto;">
                 @endif
-                <p>{!! $value->theme !!}</p>
-                <p>{!! $value->description !!}</p>
                 <a href="{!! url('eventdetail/'.$value->id) !!}" class="btn btn-danger">Continue Reading</a>
             </div>
         </div>
