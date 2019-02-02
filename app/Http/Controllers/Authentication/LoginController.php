@@ -84,7 +84,7 @@ class LoginController extends Controller
     {
         Auth::loginUsingId($userid);
 
-        return redirect()->route('/');
+        return redirect()->to('/');
     }
 
     private function getAdduser($auth)
