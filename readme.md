@@ -8,6 +8,7 @@
 ## Update Feature 1 Februari 2019
 - Limitation participant on event
 - Show all information on detail event page
+- Bug fix show menu
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

@@ -11,16 +11,20 @@ use Crypt;
 use App\Repositories\CategoryRepository;
 use App\Repositories\UnitRepository;
 use App\Repositories\TypeRepository;
+use App\Repositories\UserdetailRepository;
+use Session;
 
 class EventsController extends Controller
 {
     private $repository;
     public function __construct(
+        UserdetailRepository $detailRepository,
         EventsRepository $repository,
         CategoryRepository $categoryRepository,
         UnitRepository $unitRepository,
         TypeRepository $typeRepo
     ) {
+        $this->detailRepository = $detailRepository;
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->unitRepository = $unitRepository;
@@ -34,6 +38,30 @@ class EventsController extends Controller
      */
     public function index(Request $request)
     {
+        $userDetail = $this->detailRepository->findbyuser(Auth::user()->id);
+
+        if (!$userDetail) {
+            Session::put('ss_status_biodata', false);
+
+            $data = [
+                'userDetail' => $userDetail,
+            ];
+
+            return view('biodata', $data);
+        }
+
+        if (!$userDetail->phone) {
+            Session::put('ss_status_biodata', false);
+
+            $data = [
+                'userDetail' => $userDetail,
+            ];
+
+            return view('biodata', $data);
+        }
+
+        Session::put('ss_status_biodata', true);
+
         if (Auth::user()->role == 'admin') {
             $event = $this->repository->get(['rCategory', 'rUnit', 'rType'], $request->input('title'));
         } else {
