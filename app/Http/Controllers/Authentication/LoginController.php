@@ -46,45 +46,17 @@ class LoginController extends Controller
             $useridsso = $rr->userid;
         }
 
-        $url = "https://siakadu.unesa.ac.id/api/apiunggun";
-        $data = array('kondisi'=>"login_sso",'email'=>$emailsso, 'id_user'=>$useridsso );
-        $x= kirim_data($url, 'post', $data);
-        $cek = unserialize($x['isi']);
+        $user = $this->userRepo->find(null, null, $auth[0]->email);
 
-        $user_name=$cek['username']; //NIM,NIP
-        $nama_user=$cek['nm_pengguna'];
-        $level_user=(int)$cek['approval_pengguna'];//100: mahasiswa, 46: dosen
-        $foto_user='';
-
-        if ($level_user==46) {
-            $id=$cek['id_sdm'];
-            $foto_user="https://staticsiakadu.unesa.ac.id/photo/dosen/300/$id.jpg";
-            $cek['foto']=$foto_user;
-
-            $url = "https://siakadu.unesa.ac.id/api/apiunggun";
-            $datapimpinan = array('id_sdm'=>$cek['id_sdm'], 'kondisi'=>"unit_pimpinan_sipena");
-            $xpimpinan= kirim_data($url, 'post', $datapimpinan);
-            $pimpinan = unserialize($xpimpinan['isi']);
-            foreach ($pimpinan as $value) {
-                $prodi = $value['child'];
-            }
-            Session::put('ss_pimpinan_prodi', $prodi);
-            //Dosen
-            Session::put('ss_id_pengguna', $cek['id_pengguna']);
-            Session::put('ss_namarole', 'D');
-            Session::put('ss_nama', $cek['nm_pengguna']);
-            Session::put('ss_userid', $cek['username']);
-            Session::put('ss_id_sdm', $cek['id_sdm']);
-            Session::put('ss_foto', $cek['foto']);
-
-            Session::put('ss_periodesekarang', $setting['data'][0]['semester']);
-
-            Alert::success('Selamat Datang', Session::get('ss_nama'))->persistent('Ok');
-
-            return redirect()->intended('dashboarddosen');
+        if ($user) {
+            // Login
+            return $this->getlogin($user->id);
+        } else {
+            // Add User
+            return $this->getadduser($auth);
         }
 
-        return redirect()->to('https://siakadu.unesa.ac.id');
+        return redirect()->route('/');
     }
 
     public function sso(Request $request, $email, $session_id)

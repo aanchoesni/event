@@ -15,6 +15,7 @@
 - Bug fix delete detail user if user delete
 - Bug fix update status event
 - Bug fix link my event
+- Bug fix show login page
 
 ## Update Feature 1 Februari 2019
 - Add many type participant
