@@ -22,6 +22,8 @@
 - Bug fix register user sso
 - Bug fix type user not match
 - Bug fix register event
+- Bug fix sweetalert (downgrade 2.0 -> 1.4)
+- Bug fix user umum can register
 
 ## Update Feature 1 Februari 2019
 - Add many type participant
