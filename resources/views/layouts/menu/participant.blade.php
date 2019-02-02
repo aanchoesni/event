@@ -6,4 +6,4 @@
 @if (Auth::user()->role != 'umum')
 <li><a href="{!! url('admin/events') !!}">Manage Event</a></li>
 @endif
-<li><a href="{!! url('school/history') !!}">My Event</a></li>
+<li><a href="{!! url('history') !!}">My Event</a></li>
