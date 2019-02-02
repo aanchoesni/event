@@ -9,7 +9,7 @@ class BiodataRepository
     public function biodata($auth)
     {
         if ($auth[0]->jenis == 'P') {
-            return $this->isdm($auth[0]->userid);
+            return $this->isdm($auth);
         }
 
         if ($auth[0]->jenis == 'M') {
@@ -17,13 +17,13 @@ class BiodataRepository
         }
     }
 
-    public function isdm($userid)
+    public function isdm($auth)
     {
         $client = new GuzzleHttpClient();
-        $apiRequest = $client->request('GET', 'https://i-sdm.unesa.ac.id/biodataumum/' . $userid);
+        $apiRequest = $client->request('GET', 'https://i-sdm.unesa.ac.id/biodataumum/' . $auth[0]->userid);
         $isdm = json_decode($apiRequest->getBody()->getContents());
 
-        $data['email'] = $isdm[0]->email;
+        $data['email'] = $auth[0]->email;
         $data['name'] = $isdm[0]->nama;
         $data['noid'] = $isdm[0]->nip;
         if ($isdm[0]->isdosen == 0) {
