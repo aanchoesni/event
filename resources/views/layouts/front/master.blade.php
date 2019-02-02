@@ -44,7 +44,7 @@
                         <li><a href="{!! url('/') !!}">Home</a></li>
                         @guest
                         <li><a href="{!! url('login') !!}">Login</a></li>
-                        <li><a href="{!! url('register') !!}">Register</a></li>
+                        {{-- <li><a href="{!! url('register') !!}">Register</a></li> --}}
                         @else
                         @if (Auth::user()->role != 'umum')
                         <li><a href="{!! url('admin/events') !!}">Manage Event</a></li>
