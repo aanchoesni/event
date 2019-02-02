@@ -41,7 +41,7 @@ class Event extends Model
     ];
 
     protected $fillable = [
-        'id', 'code', 'unit_id', 'type_id', 'category_id', 'title', 'theme', 'place', 'date', 'times', 'quota', 'pamphlet', 'start_reg', 'end_reg', 'publication_status', 'pay_status', 'start_pay', 'end_pay', 'bank_name', 'bank_number', 'bank_owner', 'cost', 'userid_created', 'userid_updated', 'description'
+        'id', 'code', 'unit_id', 'type_id', 'category_id', 'title', 'theme', 'place', 'date', 'times', 'quota', 'pamphlet', 'start_reg', 'end_reg', 'publication_status', 'pay_status', 'start_pay', 'end_pay', 'bank_name', 'bank_number', 'bank_owner', 'cost', 'userid_created', 'userid_updated', 'description', 'slug'
     ];
 
     public function rCategory()

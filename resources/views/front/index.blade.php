@@ -43,7 +43,7 @@
                 @if ($value->pamphlet)
                 <img src="img/{!! $value->pamphlet !!}" alt="" style="width: 100%; height: auto;">
                 @endif
-                <a href="{!! url('eventdetail/'.$value->id) !!}" class="btn btn-danger">Continue Reading</a>
+                <a href="{!! url('eventdetail/'.$value->code) !!}" class="btn btn-danger">Continue Reading</a>
             </div>
         </div>
     </div>

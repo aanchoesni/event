@@ -26,6 +26,18 @@ class EventsRepository
             ->firstOrFail();
     }
 
+    public function findCode($code = null, $with = null)
+    {
+        return $this->model
+            ->when($with, function ($query) use ($with) {
+                return $query->with($with);
+            })
+            ->when($code, function ($query) use ($code) {
+                return $query->where('code', $code)->orWhere('slug', $code);
+            })
+            ->firstOrFail();
+    }
+
     public function get($with = null, $title = null, $role = null)
     {
         return $this->model
@@ -59,10 +71,24 @@ class EventsRepository
             ->paginate($limit);
     }
 
+    public function code()
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 6; ++$i) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
+
     public function store($request)
     {
         $data = $request->except('_token');
         $data['id'] = (string)Str::uuid();
+        $data['code'] = $this->code();
+        $data['slug'] = str_slug($request->input('title'));
         $data['publication_status'] = $request->has('publication_status') ? true : false;
         $data['pay_status'] = $request->has('pay_status') ? true : false;
         $data['userid_created'] = Auth::user()->id;

@@ -38,9 +38,9 @@ class FrontController extends Controller
 
     public function eventdetail($id)
     {
-        $event = $this->repoEvent->find($id, ['rCategory', 'rUnit', 'rType', 'rEventParticipant', 'rParticipant']);
+        $event = $this->repoEvent->findCode($id, ['rCategory', 'rUnit', 'rType', 'rEventParticipant', 'rParticipant']);
         $categories = $this->repoCategories->get();
-        $participant = $this->repoParticipant->check($id, Auth::user()->id);
+        $participant = $this->repoParticipant->check($event->id, Auth::user()->id);
 
         $data = [
             'event' => $event,
