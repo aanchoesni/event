@@ -16,6 +16,7 @@
 - Bug fix update status event
 - Bug fix link my event
 - Bug fix show login page
+- Bug fix name app
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

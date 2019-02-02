@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Inseo">
-    <meta name="keyword" content="ATLETIK UNESA, Atletik, Unesa, Universitas Negeri Surabaya, lomba">
+    <meta name="keyword" content="EVENT UNESA, event, Unesa, Universitas Negeri Surabaya, lomba">
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Login | Event Unesa</title>

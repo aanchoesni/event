@@ -8,7 +8,7 @@
     <meta name="keyword" content="Atletik, Unesa">
     <link rel="shortcut icon" href="img/fav.png">
 
-    <title>@yield('title') | Atletik Unesa</title>
+    <title>@yield('title') | Event Unesa</title>
 
     <!-- Bootstrap core CSS -->
     {{Html::style("admin/css/bootstrap.min.css")}}
