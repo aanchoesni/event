@@ -13,6 +13,7 @@
 - Bug fix delete event
 - Bug fix show participant on event
 - Bug fix delete detail user if user delete
+- Bug fix update status event
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

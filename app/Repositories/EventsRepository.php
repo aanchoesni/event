@@ -100,7 +100,7 @@ class EventsRepository
     public function update($request, Event $event)
     {
         $data = $request->except('_token');
-        if ($request->input('publication_status')) {
+        if ($request->has('publication_status')) {
             $data['publication_status'] = $request->has('publication_status') ? true : false;
         }
         $data['pay_status'] = $request->has('pay_status') ? true : false;
