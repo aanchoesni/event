@@ -23,7 +23,7 @@
             @endif
         </div>
         <input type="password" class="form-control tkh" placeholder="Password" name="password" id="password" autofocus>
-        <button class="btn btn-lg btn-login btn-block" type="submit">MASUK</button>
+        <button class="btn btn-lg btn-login btn-block" type="submit">LOGIN</button>
         <div class="form-group row">
             <div class="col-md-6 offset-md-4">
                 <div class="form-check">
@@ -35,12 +35,12 @@
                 </div>
             </div>
         </div>
-        <div class="registration tkh">
+        {{-- <div class="registration tkh">
             Belum punya akun.
             <a class="" href="{{ route('register') }}">
                 Daftar
             </a>
-        </div>
+        </div> --}}
         <div class="registration tkh">
             Lupa password?
             <a class="" href="{{ route('password.request') }}">

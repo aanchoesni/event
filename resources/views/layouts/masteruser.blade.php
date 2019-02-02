@@ -36,7 +36,7 @@
               </button>
 
               <!--logo start-->
-              <a href="{{ URL::to('dashboard') }}" class="logo" >Atletik <span>Unesa</span></a>
+              <a href="{{ URL::to('dashboard') }}" class="logo" >Event <span>Unesa</span></a>
               <!--logo end-->
               <div class="horizontal-menu navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
