@@ -36,11 +36,15 @@ class ParticipantRepository
         }
 
         $event = $this->repoEvent->find($id, ['rType']);
-
+        $filter = 'stop';
         foreach ($event->rType as $key => $val) {
-            if (strtolower($val->name) != strtolower($user->role)) {
-                return 'tidak sesuai';
+            if (strtolower($val->name) == strtolower($user->role)) {
+                $filter == 'nextstep';
             }
+        }
+
+        if ($filter == 'stop') {
+            return 'tidak sesuai';
         }
 
         if ($event->pay_status == false) {
