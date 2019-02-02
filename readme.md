@@ -19,6 +19,7 @@
 - Bug fix name app
 - Bug fix login sso
 - Bug fix redirect page after login sso
+- Bug fix register user sso
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

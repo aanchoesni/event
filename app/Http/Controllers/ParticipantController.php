@@ -21,21 +21,21 @@ class ParticipantController extends Controller
     public function register(Request $request)
     {
         $reg = $this->quotaRepo->check($request->input('data'));
-        if ($reg == 'f') {
+        if ($reg['status'] == 'f') {
             Alert::success('Participant is Full');
-            return redirect()->route('eventdetail', ['data' => $request->input('data')]);
+            return redirect()->route('eventdetail', ['data' => $reg['event']->code]);
         }
 
         $participant = $this->repoParticipant->store($request->input('data'));
 
         if ($participant == 'terdaftar') {
             Alert::success('You are Registerd');
-            return redirect()->route('eventdetail', ['data' => $request->input('data')]);
+            return redirect()->route('eventdetail', ['data' => $reg['event']->code]);
         }
 
         if ($participant == 'tidak sesuai') {
             Alert::error('Type of Participant Not Match');
-            return redirect()->route('eventdetail', ['data' => $request->input('data')]);
+            return redirect()->route('eventdetail', ['data' => $reg['event']->code]);
         }
 
         if ($participant->is_valid == 1) {
@@ -44,7 +44,7 @@ class ParticipantController extends Controller
             Alert::success('Please Confirm Your Payment');
         }
 
-        return redirect()->route('eventdetail', ['data'=>$request->input('data')]);
+        return redirect()->route('eventdetail', ['data'=> $reg['event']->code]);
     }
 
     public function history()

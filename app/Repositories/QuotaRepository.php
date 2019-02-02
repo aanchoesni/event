@@ -22,12 +22,21 @@ class QuotaRepository
         $countParticipant = $this->participantRepo->where('event_id', $id)->count();
 
         if ($quota->quota != null || $quota->quota != 0) {
-            $return = 'f';
+            $return = [
+                'event' => $quota,
+                'status' => 'f'
+            ];
             if ($quota->quota > $countParticipant) {
-                $return = 't';
+                $return = [
+                    'event' => $quota,
+                    'status' => 't'
+                ];
             }
         } else {
-            $return = 't';
+            $return = [
+                'event' => $quota,
+                'status' => 't'
+            ];
         }
 
         return $return;

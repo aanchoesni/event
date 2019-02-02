@@ -40,7 +40,11 @@ class FrontController extends Controller
     {
         $event = $this->repoEvent->findCode($id, ['rCategory', 'rUnit', 'rType', 'rEventParticipant', 'rParticipant']);
         $categories = $this->repoCategories->get();
-        $participant = $this->repoParticipant->check($event->id, Auth::user()->id);
+
+        $participant = null;
+        if (Auth::check()) {
+            $participant = $this->repoParticipant->check($event->id, Auth::user()->id);
+        }
 
         $data = [
             'event' => $event,

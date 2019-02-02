@@ -64,13 +64,20 @@
                         <a class="btn btn-success" disabled>Registered</a>
                     @else
                         @if ($event->end_reg > Date('Y-m-d'))
-                            @if ($event->quota > $event->rEventParticipant->count())
-                            <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Register</button>
-                            </form>
+                            @if ($event->quota != null || $event->quota != 0)
+                                @if ($event->quota > $event->rEventParticipant->count())
+                                <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Register</button>
+                                </form>
+                                @else
+                                    <a class="btn btn-danger" disabled>Participant is Full</a>
+                                @endif
                             @else
-                                <a class="btn btn-danger" disabled>Participant is Full</a>
+                                <form action="{!! route('regevent', ['data' => $event->id]) !!}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Register</button>
+                                </form>
                             @endif
                         @endif
                     @endif
