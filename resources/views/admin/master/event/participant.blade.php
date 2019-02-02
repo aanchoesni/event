@@ -49,8 +49,11 @@
                         <tr>
                           <td style="text-align:center;">{!! $no++; !!}</td>
                           <td>{!! $value->rUser->name !!}</td>
-                          <td>{!! $value->rUser->rDetail->rUnit->name !!}</td>
-                          <td>{!! $value->rUser->rDetail->rType->name !!}</td>
+                          <td>
+                              {!! $value->rUser->rDetail->fakultas !!}<br>
+                              {!! $value->rUser->rDetail->prodi !!}
+                          </td>
+                          <td>{!! $value->rUser->rDetail->type !!}</td>
                           <td>{!! $value->rUser->rDetail->phone !!}</td>
                           <td style="text-align:center;">
                             <button class="btn btn-danger btn-xs" id="btn_delete" data-file="{{$value->id}}"><i class="fa fa-trash-o"></i></button>

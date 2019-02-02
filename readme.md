@@ -10,6 +10,8 @@
 - Show all information on detail event page
 - Bug fix show menu
 - Add code event and update parameter event detail
+- Bug fix delete event
+- Bug fix show participant on event
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

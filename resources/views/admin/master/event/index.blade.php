@@ -88,7 +88,7 @@
                             <a href="{{ route('events.edit', $value->id) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
 
                             <button class="btn btn-danger" id="btn_delete" data-file="{{$value->id}}"><i class="fa fa-trash-o"></i></button>
-                            {{ Form::open(['url'=>route('events.destroy', ['data'=>Crypt::encrypt($value->id)]), 'method'=>'delete', 'id' => $value->id, 'style' => 'display: none;']) }}
+                            {{ Form::open(['url'=>route('events.destroy', ['data'=>Crypt::encrypt($value->id)]), 'method'=>'delete', 'id' => 'del_'.$value->id, 'style' => 'display: none;']) }}
                             {{ csrf_field() }}
                             {{ Form::close() }}
                           </td>
@@ -139,7 +139,8 @@
             if(isConfirm){
               swal("Terhapus","Data berhasil dihapus", "success");
               setTimeout(function() {
-                $("#"+data).submit();
+                  console.log(data);
+                $("#del_"+data).submit();
               }, 1000); // 1 second delay
             }
             else{
