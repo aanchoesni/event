@@ -19,7 +19,7 @@
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^5.3",
-        "uxweb/sweet-alert": "^2.0"
+        "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
