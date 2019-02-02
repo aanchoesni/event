@@ -39,7 +39,7 @@ class ParticipantRepository
         $filter = 'stop';
         foreach ($event->rType as $key => $val) {
             if (strtolower($val->name) == strtolower($user->role)) {
-                $filter == 'nextstep';
+                $filter = 'nextstep';
             }
         }
 
