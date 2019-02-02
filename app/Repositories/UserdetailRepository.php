@@ -75,4 +75,10 @@ class UserdetailRepository
 
         return $biodata;
     }
+
+    public function destroy(Userdetail $detailUser)
+    {
+        $detailUser->delete();
+        return $detailUser;
+    }
 }

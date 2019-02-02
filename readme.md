@@ -12,6 +12,7 @@
 - Add code event and update parameter event detail
 - Bug fix delete event
 - Bug fix show participant on event
+- Bug fix delete detail user if user delete
 
 ## Update Feature 1 Februari 2019
 - Add many type participant

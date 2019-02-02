@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Repositories\UsersRepository;
 use Alert;
 use Crypt;
+use App\Repositories\UserdetailRepository;
 
 class UserController extends Controller
 {
     private $repository;
-    public function __construct(UsersRepository $repository)
-    {
+    private $detailRepo;
+    public function __construct(
+        UsersRepository $repository,
+        UserdetailRepository $detailRepo
+    ) {
         $this->repository = $repository;
+        $this->detailRepo = $detailRepo;
     }
 
     /**
@@ -108,6 +113,9 @@ class UserController extends Controller
     {
         $user = $this->repository->find(Crypt::decrypt($id));
         $this->repository->destroy($user);
+
+        $detail = $this->detailRepo->findbyuser(Crypt::decrypt($id));
+        $this->detailRepo->destroy($detail);
 
         return redirect()->route('users.index');
     }
