@@ -38,7 +38,7 @@ class ParticipantRepository
         $event = $this->repoEvent->find($id, ['rType']);
 
         foreach ($event->rType as $key => $val) {
-            if ($val->name != $user->role) {
+            if (strtolower($val->name) != strtolower($user->role)) {
                 return 'tidak sesuai';
             }
         }
