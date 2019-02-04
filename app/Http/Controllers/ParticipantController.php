@@ -16,6 +16,7 @@ class ParticipantController extends Controller
         ParticipantRepository $repoParticipant,
         QuotaRepository $quotaRepo
     ) {
+        $this->detailRepository = $detailRepository;
         $this->repoParticipant = $repoParticipant;
         $this->quotaRepo = $quotaRepo;
     }
