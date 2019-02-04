@@ -7,10 +7,12 @@ use App\Repositories\ParticipantRepository;
 use Alert;
 use Auth;
 use App\Repositories\QuotaRepository;
+use App\Repositories\UserdetailRepository;
 
 class ParticipantController extends Controller
 {
     public function __construct(
+        UserdetailRepository $detailRepository,
         ParticipantRepository $repoParticipant,
         QuotaRepository $quotaRepo
     ) {
