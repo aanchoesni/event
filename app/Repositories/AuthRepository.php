@@ -18,7 +18,7 @@ class AuthRepository
             $error = 'Token Tidak Ditemukan';
             return $error;
         }
-        
+
         // Check Validation Token
         try {
             $clientauthtknsso = new GuzzleHttpClient();

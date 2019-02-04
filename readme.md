@@ -5,6 +5,9 @@
 - Integrated with [I-SDM](https://i-sdm.unesa.ac.id).
 - Integrated with [SIAKADU](https://siakadu.unesa.ac.id).
 
+## Update Feature 4 Februari 2019
+- Register event must input phone number
+
 ## Update Feature 1 Februari 2019
 - Limitation participant on event
 - Show all information on detail event page

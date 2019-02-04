@@ -20,6 +20,26 @@ class ParticipantController extends Controller
 
     public function register(Request $request)
     {
+        $userDetail = $this->detailRepository->findbyuser(Auth::user()->id);
+
+        if (!$userDetail) {
+            $data = [
+                'userDetail' => $userDetail,
+            ];
+
+            Alert::warning('Lengkapi Biodata Anda');
+            return view('biodata', $data);
+        }
+
+        if (!$userDetail->phone) {
+            $data = [
+                'userDetail' => $userDetail,
+            ];
+
+            Alert::warning('Masukkan Nomor HP Anda');
+            return view('biodata', $data);
+        }
+
         $reg = $this->quotaRepo->check($request->input('data'));
         if ($reg['status'] == 'f') {
             Alert::success('Participant is Full');

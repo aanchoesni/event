@@ -99,4 +99,16 @@ class LoginController extends Controller
 
         return redirect()->intended('home');
     }
+
+    // public function check($email)
+    // {
+    //     $clientbiodata = new GuzzleHttpClient();
+    //     $apiRequestbiodata = $clientbiodata->request('GET', 'https://sso.unesa.ac.id/userid/'. $email);
+    //     $auth = json_decode($apiRequestbiodata->getBody()->getContents());
+
+    //     // $auth[0] = (object)['userid' => '18020074065'];
+    //     $check = $this->biodataRepo->siakadu($auth);
+
+    //     dd($check);
+    // }
 }
