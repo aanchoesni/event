@@ -42,7 +42,7 @@ class BiodataRepository
     {
         $userid = $auth[0]->userid;
         $url = "https://siakadu.unesa.ac.id/api/apiunggun";
-        $data = array('username' => '17051204081', 'kondisi' => "cekhakakses");
+        $data = array('username' => $userid, 'kondisi' => "cekhakakses");
         $x = kirim_data($url, 'post', $data);
         $user = unserialize($x['isi']);
 
