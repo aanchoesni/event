@@ -33,7 +33,7 @@
                 </td>
                 <td style="text-align: center; vertical-align: middle;">
                     <div>
-                        <a href="{!! url('cetakkartu') !!}" class="btn btn-sm btn-success"> Cetak Kartu</a>
+                        <a href="{!! url('print/'.Crypt::encrypt($value->id)) !!}" class="btn btn-sm btn-success"> Cetak Kartu</a>
                     </div>
                     @if ($value->rEvent->pay_status == true)
                     <div>

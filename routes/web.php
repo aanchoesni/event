@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/regevent', 'ParticipantController@register')->name('regevent');
     Route::get('/history', 'ParticipantController@history')->name('history');
+    Route::get('print/{id}', 'CardController@print')->name('card.print');
 
     Route::group(['prefix' => '/biodata', 'as' => 'biodata.'], function () {
         Route::get('/show', 'BiodataController@show')->name('show');

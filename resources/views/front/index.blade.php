@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="col-lg-10 col-sm-10">
-                <h1><a href="{!! url('eventdetail/'.$value->id) !!}">{!! $value->title !!}</a></h1>
+                <h1><a href="{!! url('eventdetail/'.$value->code) !!}">{!! $value->title !!}</a></h1>
                 <p>Theme : {!! $value->theme !!}</p>
                 <p>{!! strip_tags(substr(html_entity_decode($value->description,ENT_COMPAT,"UTF-8"),0 , 250)) !!}</p>
                 @if ($value->pamphlet)

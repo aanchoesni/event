@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="col-lg-10 col-sm-10">
-                <h1><a href="{!! url('eventdetail/'.$event->id) !!}">{!! $event->title !!}</a></h1>
+                <h1><a href="{!! url('eventdetail/'.$event->code) !!}">{!! $event->title !!}</a></h1>
                 <p>Theme : {!! $event->theme !!}</p>
                 <p>Unit : {!! $event->rUnit->name !!}</p>
                 <p>Place : {!! $event->place !!}</p>
