@@ -16,6 +16,9 @@
 // });
 
 Route::get('/', 'FrontController@index');
+Route::get('/about', function(){
+    return view('about');
+});
 Route::get('eventdetail/{id}', 'FrontController@eventdetail')->name('eventdetail');
 
 // Auth::routes();

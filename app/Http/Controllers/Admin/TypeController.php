@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\TypeRepository;
 use Alert;
 use Crypt;
+use App\Http\Requests\TipeRequest;
 
 class TypeController extends Controller
 {
@@ -47,7 +48,7 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipeRequest $request)
     {
         $this->repository->store($request);
 

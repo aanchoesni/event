@@ -61,6 +61,7 @@
                             </form>
                         </li>
                         @endguest
+                        <li><a href="{!! url('/about') !!}">About</a></li>
                     </ul>
                 </div>
             </div>
